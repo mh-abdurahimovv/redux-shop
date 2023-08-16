@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { getProducts, setPriceFilter, setCategoryFilter } from '../store/productSlice';
+import StatusCode from '../utils/StatusCode';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -32,11 +33,11 @@ const ProductList = () => {
     dispatch(setCategoryFilter(event.target.value));
   };
 
-  if (status === 'loading') {
+  if (status === StatusCode.LOADING) {
     return <p>LOADING...</p>;
   }
 
-  if (status === 'error') {
+  if (status === StatusCode.ERROR) {
     return <p>Something went wrong. Please try again later</p>;
   }
 
