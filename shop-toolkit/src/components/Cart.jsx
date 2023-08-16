@@ -10,9 +10,9 @@ const Cart = () => {
     const products = useSelector(state => state.cart);
 
     const dispatch = useDispatch()
-    // const removeItem = (id) => {
-    //     dispatch(remove(id))
-    // }
+    const removeItem = (id) => {
+        dispatch(remove(id))
+    }
 
     const cards = products.map(product => (
         <div className="col-md-12" key={product.id} style={{ marginBottom: '10px' }}>
@@ -27,7 +27,7 @@ const Cart = () => {
               {product.price}$
             </Card.Text>
             <Card.Footer style={{ background: 'white' }}>
-              <Button variant="danger" onClick={() => dispatch(remove(product.id))} >Remove Item</Button>
+              <Button variant="danger" onClick={() => removeItem(product.id)} >Remove Item</Button>
             </Card.Footer>
           </Card>
         </div>
