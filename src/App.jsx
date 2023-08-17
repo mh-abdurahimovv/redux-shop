@@ -3,17 +3,18 @@ import './App.css'
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
-import Cart from './components/Cart';
-import ProductCard from './components/ProductCard';
+import Cart from './pages/Cart';
+// import ProductCard from './components/ProductCard';
 import RootLayout from './components/RootLayout';
-import ProductDetail from './components/ProuctDetail';
+import ProductDetail from './pages/ProuctDetail';
+import ProductList from './pages/ProductList';
 
 
 function App() {
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<RootLayout/>} >
-      <Route index element={<ProductCard />}></Route>
+      <Route index element={<ProductList />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/about/:productId" element={<ProductDetail />}></Route>
     </Route>

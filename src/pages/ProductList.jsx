@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 import { getProducts, setPriceFilter, setCategoryFilter } from '../store/productSlice';
 import StatusCode from '../utils/StatusCode';
+import ProductCard from '../components/ProductCard';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -47,27 +45,11 @@ const ProductList = () => {
     const categoryFilter = filters.category ? product.category === filters.category : true;
     return priceFilter && brandFilter && categoryFilter;
   });
-
-  const cards = filteredProducts.map(product => (
-    <div className="col-md-3" key={product.id} style={{ marginBottom: '10px' }}>
-      <Card className="h-100">
-        <div className="text-center">
-          <Card.Img variant="top" src={product.image} style={{ width: '100px', height: '130px' }} />
-        </div>
-        <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-        </Card.Body>
-        <Card.Text>
-          {product.price}$
-        </Card.Text>
-        <Card.Footer style={{ background: 'white' }}>
-          <Link to={`/about/${product.id}`}>
-            <Button variant="primary">Learn more</Button>
-          </Link>
-        </Card.Footer>
-      </Card>
-    </div>
+  const productCards = filteredProducts.map(product => (
+    <ProductCard key={product.id} product={product} /> // Используйте компонент ProductCard
   ));
+
+
 
   return (
     <>
@@ -99,7 +81,7 @@ const ProductList = () => {
       </div>
       <br />
       <div className="row">
-        {cards}
+        {productCards}
       </div>
     </>
   );
